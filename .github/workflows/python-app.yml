@@ -13,6 +13,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Show repo files (debug)
+      run: |
+        pwd
+        ls -la
+        ls -la tests || true
+        find . -maxdepth 2 -type f -name "test_*.py" -print
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -25,9 +32,9 @@ jobs:
 
     - name: Run tests with coverage
       env:
-        PYTHONPATH:  
+        PYTHONPATH: .
       run: |
-        pytest tests/ --cov=app --cov-branch
+        pytest -q tests/ --cov=app --cov-branch -vv
 
     - name: Enforce 100% coverage
       run: |
