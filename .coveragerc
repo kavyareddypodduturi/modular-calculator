@@ -1,12 +1,9 @@
 [run]
 branch = True
 source = app
+omit =
+    app/calculator_repl.py
 
 [report]
 exclude_lines =
     pragma: no cover
-    if __name__ == .__main__.:
-    def repl\(
-    while True:
-    input\(
-    print\(
